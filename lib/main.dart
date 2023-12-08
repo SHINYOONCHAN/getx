@@ -1,30 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:getx/screens/home_screen.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+void main() {
+  runApp(const MyApp());
+}
 
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-  );
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
-    (_) {
-      runApp(
-        GetMaterialApp(
-          home: const Scaffold(
-            backgroundColor: Colors.white,
-            body: HomeScreen(),
-          ),
-          theme: ThemeData(
-            fontFamily: 'Pretendard',
-            useMaterial3: false,
-          ),
-          debugShowCheckedModeBanner: false,
-        ),
-      );
-    },
-  );
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Getx Example',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const HomeScreen(),
+    );
+  }
 }

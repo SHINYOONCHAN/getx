@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/controllers/counter_controller.dart';
-import 'package:getx/screens/other_screen.dart';
+import 'package:getx/controllers/Item_controller.dart';
+import 'package:getx/screens/favorite_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,31 +11,39 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  final CounterController c = Get.put(CounterController());
+  final FavoriteController favoriteController = Get.put(FavoriteController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Obx(() => Text("Count: ${c.count}")),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: c.increment,
-              child: const Text('Increment'),
-            ),
-            ElevatedButton(
-              onPressed: c.decrement,
-              child: const Text('Decrement'),
-            ),
-            ElevatedButton(
-              onPressed: () => Get.to(const OtherScreen()),
-              child: const Text('other'),
-            ),
-          ],
-        ),
+      appBar: AppBar(
+        leading: IconButton(
+            icon: const Icon(Icons.favorite_border),
+            onPressed: () => Get.to(const FavoritePage())),
+      ),
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          int number = index + 1;
+          return ListTile(
+            title: Text('리스트 $number'),
+            trailing: Obx(() {
+              bool isFavorite = favoriteController.favorites.contains(number);
+              return IconButton(
+                icon: Icon(
+                  isFavorite ? Icons.favorite : Icons.favorite_border,
+                  color: isFavorite ? Colors.red : null,
+                ),
+                onPressed: () {
+                  favoriteController.toggleFavorite(number);
+                },
+              );
+            }),
+            onTap: () {
+              Get.to(FavoritePage());
+            },
+          );
+        },
       ),
     );
   }
