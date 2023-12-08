@@ -17,9 +17,14 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-            icon: const Icon(Icons.favorite_border),
-            onPressed: () => Get.to(const FavoritePage())),
+        centerTitle: true,
+        title: const Text("GetX Example"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.shopping_bag_outlined),
+            onPressed: () => Get.to(const FavoritePage()),
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: 10,

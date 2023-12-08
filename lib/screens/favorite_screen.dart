@@ -16,7 +16,7 @@ class FavoritePageState extends State<FavoritePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('찜된 리스트'),
+        title: Text('찜 리스트'),
       ),
       body: Obx(() {
         return ListView.builder(
