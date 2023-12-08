@@ -44,9 +44,6 @@ class HomeScreenState extends State<HomeScreen> {
                 },
               );
             }),
-            onTap: () {
-              Get.to(FavoritePage());
-            },
           );
         },
       ),
