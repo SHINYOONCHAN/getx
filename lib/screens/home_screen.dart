@@ -27,6 +27,10 @@ class HomeScreenState extends State<HomeScreen> {
               child: const Text('Increment'),
             ),
             ElevatedButton(
+              onPressed: c.decrement,
+              child: const Text('Decrement'),
+            ),
+            ElevatedButton(
               onPressed: () => Get.to(const OtherScreen()),
               child: const Text('other'),
             ),
