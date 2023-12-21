@@ -1,16 +1,5 @@
 # getx
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Lightweight state management and routing library. 
+  Provides various functions such as state management, routing, dependency injection, etc.
+- Used for projects of various sizes, from simple to medium to large scale. In particular, developers prefer GetX for faster development and maintenance.
