@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/controllers/Item_controller.dart';
+import '../view_models/item_controller.dart';
+import '../models/item.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);
@@ -10,28 +11,25 @@ class FavoritePage extends StatefulWidget {
 }
 
 class FavoritePageState extends State<FavoritePage> {
-  final FavoriteController favoriteController = Get.find();
+  final FavoriteViewModel favoriteViewModel = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('찜 리스트'),
+        title: const Text('찜 리스트'),
       ),
       body: Obx(() {
         return ListView.builder(
-          itemCount: favoriteController.favorites.length,
+          itemCount: favoriteViewModel.favorites.length,
           itemBuilder: (context, index) {
-            int number = favoriteController.favorites[index];
+            Item item = favoriteViewModel.favorites[index];
             return ListTile(
-              title: Text('찜된 리스트 $number'),
+              title: Text('찜된 리스트 ${item.id}'),
               trailing: IconButton(
-                icon: Icon(
-                  Icons.favorite,
-                  color: Colors.red,
-                ),
+                icon: const Icon(Icons.favorite, color: Colors.red),
                 onPressed: () {
-                  favoriteController.toggleFavorite(number);
+                  favoriteViewModel.toggleFavorite(item);
                 },
               ),
             );

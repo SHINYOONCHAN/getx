@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/controllers/Item_controller.dart';
-import 'package:getx/screens/favorite_screen.dart';
+import 'package:getx/view_models/item_controller.dart';
+import 'package:getx/views/favorite_screen.dart';
+import '../models/item.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  final FavoriteController favoriteController = Get.put(FavoriteController());
+  final FavoriteViewModel favoriteViewModel = Get.put(FavoriteViewModel());
 
   @override
   Widget build(BuildContext context) {
@@ -29,18 +30,19 @@ class HomeScreenState extends State<HomeScreen> {
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) {
-          int number = index + 1;
+          Item item = Item(index + 1); // Item 객체 생성
           return ListTile(
-            title: Text('리스트 $number'),
+            title: Text('리스트 ${item.id}'),
             trailing: Obx(() {
-              bool isFavorite = favoriteController.favorites.contains(number);
+              bool isFavorite = favoriteViewModel.favorites
+                  .any((favoriteItem) => favoriteItem.id == item.id);
               return IconButton(
                 icon: Icon(
                   isFavorite ? Icons.favorite : Icons.favorite_border,
                   color: isFavorite ? Colors.red : null,
                 ),
                 onPressed: () {
-                  favoriteController.toggleFavorite(number);
+                  favoriteViewModel.toggleFavorite(item); // Item 객체 사용
                 },
               );
             }),
